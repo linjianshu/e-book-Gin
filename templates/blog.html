@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html lang="zh-CN">
+<head>
+    {{template "head" . }}
+</head>
+
+<body>
+
+{{template "nav" .}}
+
+<div class="container-fluid">
+    <div class="row">
+        {{ template "sidebar" . }}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">🍤🍱🥡🍥🍕论坛🙇‍♀️🍨🍰🍧🍦</h1>
+
+            <p class="lead">
+                <a href="/thread/new">发布一个话题</a> 或者 加入其中!
+            </p>
+
+            {{ range . }}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+<!--                    <span aria-hidden="true" class="glyphicon glyphicon-signal lead" style="font-size: 20px">{{ .Topic  }}</span>-->
+                    <span class="lead"> <i class="fa fa-comment-o"></i> {{ .Topic  }}</span>
+                </div>
+                <div class="panel-body">
+                    Started by {{ .User.Name }} - {{ .CreatedAtDate }} - {{ .NumReplies }} posts.
+                    <div class="pull-right">
+                        <a href="/thread/read?id={{.Uuid }}">Read more</a>
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+
+        </div>
+    </div>
+</div>
+
+{{template "script" .}}
+</body>
+</html>

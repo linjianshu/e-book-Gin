@@ -1,0 +1,40 @@
+<!doctype html>
+
+<html lang="zh-CN">
+<head>
+    {{template "head" .}}
+</head>
+
+<body>
+{{template "nav" .}}
+
+<div class="container-fluid">
+
+    <div class="row">
+        {{ template "sidebar" . }}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">🍤🍱🥡🍥🍕话题发布🙇‍♀️🍨🍰🍧🍦</h1>
+
+            <form role="form" action="/thread/create" method="post">
+                <div class="lead">请在下列的框框中开始你的表演🍭🍭🍭</div>
+                <div class="form-group">
+                    <textarea class="form-control" name="topic" id="topic" placeholder="🫥🫥🫥" rows="4"></textarea>
+                    <br/>
+                    <br/>
+                    <button class="btn btn-lg btn-primary pull-right" type="submit">发布话题</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+{{template "script" .}}
+
+</body>
+</html>
+

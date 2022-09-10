@@ -1,0 +1,95 @@
+<!doctype html>
+
+<html lang="zh-CN">
+<head>
+    {{template "head" .}}
+</head>
+
+<body>
+{{template "nav" .}}
+
+<div class="container-fluid">
+    <div class="row">
+        {{ template "sidebar" .}}
+
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">🍤🍱🥡🍥🍕彩云小译🙇‍♀️🍨🍰🍧🍦</h1>
+
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                    <span class="sr-only">45% Complete</span>
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <form action="/translateResult" enctype="multipart/form-data" method="post">
+
+                    <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for..." id="word" name="word">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit">Go!</button>
+                            </span>
+                    </div><!-- /input-group -->
+                    </form>
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+
+            <br/>
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ .Dictionary.Entry }}【近义】</h3>
+                </div>
+
+                <div class="panel-body">
+                    {{ range .Dictionary.Synonym }}
+                    <div>{{.}}</div>
+                    {{end}}
+                </div>
+
+            </div>
+
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ .Dictionary.Entry }}【发音】</h3>
+                </div>
+
+                <div class="panel-body">
+                    "UK:" {{ .Dictionary.Prons.En}}
+                    "US:" {{.Dictionary.Prons.EnUs}}
+                </div>
+
+                </div>
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ .Dictionary.Entry }}【示例】</h3>
+                </div>
+
+                <div class="panel-body">
+                    {{ range .Dictionary.WqxExample}}
+                    {{range .}}
+                    <div>{{.}}</div>
+                    {{end}}
+                    {{end}}
+                </div>
+
+                </div>
+
+
+
+
+        </div>
+
+        </div>
+    </div>
+</div>
+
+{{template "script" .}}
+
+</body>
+</html>
+

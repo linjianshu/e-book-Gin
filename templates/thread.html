@@ -1,0 +1,97 @@
+<!doctype html>
+
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <!--    <link href="https://fastly.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.34/favicon.ico" rel="icon">-->
+    <link href="/static/yello.png" rel="icon">
+    <link href="https://getbootstrap.com/docs/3.4/examples/dashboard/" rel="canonical">
+
+    <title>来人 把书掏出来</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://fastly.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.34/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="https://fastly.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.34/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://fastly.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.34/examples/dashboard/dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="https://fastly.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.34/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="https://fastly.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.34/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+{{template "nav" . }}
+<div class="container-fluid">
+    <div class="row">
+        {{template "sidebar" . }}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">🍤🍱🥡🍥🍕论坛🙇‍♀️🍨🍰🍧🍦</h1>
+
+            <h2 class="sub-header">话题</h2>
+            {{ range . }}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="lead"> <i class="fa fa-comment-o"></i> {{ .Topic }}</span>
+                    <div class="pull-right">
+                        Started by {{ .User.Name }} - {{ .CreatedAtDate }}
+                    </div>
+                </div>
+
+                {{ range .Posts }}
+                <div class="panel-body">
+                    <span class="lead"> <i class="fa fa-comment"></i> {{ .Body }}</span>
+                    <div class="pull-right">
+                        {{ .User.Name }} - {{ .CreatedAtDate }}
+                    </div>
+                </div>
+                {{ end }}
+
+            </div>
+
+
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <form action="/thread/post" method="post" role="form">
+                        <div class="form-group">
+                            <textarea class="form-control" id="body" name="body" placeholder="Write your reply here" rows="3"></textarea>
+                            <input name="uuid" type="hidden" value="{{ .Uuid }}">
+                            <br />
+                            <button class="btn btn-primary pull-right" type="submit">Reply</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        {{end}}
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script crossorigin="anonymous" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" src="https://fastly.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="https://fastly.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.34/assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="https://fastly.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.34/dist/js/bootstrap.min.js"></script>
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<script src="https://fastly.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.34/assets/js/vendor/holder.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="https://fastly.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.34/assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>

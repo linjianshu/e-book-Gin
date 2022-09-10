@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-app
+  labels:
+    name: my-app
+spec:
+  containers:
+    - name: my-mysql
+      image: mysql:latest
+      args:
+        - "--character-set-server=utf8"     #  指定字符编码
+        - "--collation-server=utf8_general_ci"    #  指定字符编码
+      env:
+          - name: MYSQL_ROOT_PASSWORD    #  指定root用户的用户名
+            value: "123456"
+          - name: MYSQL_DATABASE    # 新建的数据库
+            value: "datashare"
+            #            - name: MYSQL_PASSWORD     #  新建用户的用户名
+            #              value: "123456"
+            #            - name: MYSQL_USER        # 新建的用户
+            #              value: "ljs"
+      ports:
+          - containerPort: 3310
+            name: mysql
+            hostPort: 3310
+      volumeMounts:
+          - name: data
+            mountPath: /var/lib/mysql
+          - name: config
+            mountPath: /etc/mysql/mysql.conf.d/mysqld.cnf
+            subPath: mysqld.cnf
+            readOnly: False
+    #定义容器 可以多个
+    - name: test-k8s #容器名字
+      image: ccr.ccs.tencentyun.com/hfut-ie/e-book-gin:v2.0 #镜像
+      ports:
+          - containerPort: 7777
+            name: test-k8s
+            hostPort: 7777
+
+#      image: ccr.ccs.tencentyun.com/hfut/e-book-gin:v1.0 #镜像
+
+  volumes:
+      - name: data
+              #          persistentVolumeClaim:
+              #            claimName: mysql-pvc
+      - name: config
+#      configMap:
+#          name: mysql-configmap
+  dnsPolicy: ClusterFirst
+  hostNetwork: true
+

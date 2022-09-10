@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-mysql3311
+  labels:
+    app: my-mysql3311
+    version: v1.0.0
+spec:
+  selector:
+    matchLabels:
+      app: my-mysql3311
+      version: v1.0.0
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: my-mysql3311
+        version: v1.0.0
+    spec:
+      containers:
+        - image: mysql:latest
+          name: my-mysql3311
+          args:
+            - "--character-set-server=utf8"     #  指定字符编码
+            - "--collation-server=utf8_general_ci"    #  指定字符编码
+          env:
+            - name: MYSQL_ROOT_PASSWORD    #  指定root用户的用户名
+              value: "123456"
+            - name: MYSQL_DATABASE    # 新建的数据库
+              value: "datashare"
+          ports:
+            - containerPort: 3311
+              name: mysql
+          volumeMounts:

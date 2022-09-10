@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+#  服务名字
+  name: test-service
+spec:
+  selector:
+#    对应pod的标签
+    app: e-book-gin
+#    默认 ClusterIP 集群内可访问 NodePort节点可访问 LoadBalancer 负载均衡模式 (需要负载均衡器才可用)
+  type: NodePort
+  ports:
+    - port: 8080  #本 service端口
+      targetPort: 7777 #容器端口
+      nodePort: 31000 #节点端口 范围固定 从30000-32767

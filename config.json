@@ -1,0 +1,4 @@
+{
+  "ReadTimeout"    : 60,
+  "WriteTimeout"   : 600
+}

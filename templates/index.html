@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html lang="zh-CN">
+<head>
+    {{template "head" .}}
+</head>
+
+<body>
+{{template "nav" .}}
+
+<div class="container-fluid">
+    <div class="row">
+        {{ template "sidebar" .}}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">🍤🍱🥡🍥🍕资料清单🙇‍♀️🍨🍰🍧🍦</h1>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>文件名称</th>
+                        <th>文件大小</th>
+                        <th>下载列表</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{range .}}
+                    <tr>
+                        <td>{{.Id}}</td>
+                        <td>{{.Name}}</td>
+                        <td>{{.Size}} KB</td>
+                        <td><a class="btn btn-success" href="/download?id={{.Id}}">下载</a></td>
+                    </tr>
+                    {{end}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{template "script" .}}
+
+</body>
+</html>
+
