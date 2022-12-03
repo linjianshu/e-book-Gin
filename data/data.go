@@ -34,13 +34,10 @@ func init() {
 	err = configor.Load(&Config, "config.yaml")
 
 	//Db, err = gorm.Open(mysql.Open("root:Lalala123#@tcp(localhost:3306)/datashare?charset=utf8&parseTime=true"), &gorm.Config{})
-<<<<<<< HEAD
 	//Db, err = gorm.Open(mysql.Open("root:Lalala123#@tcp(localhost:3306)/datashare?charset=utf8&parseTime=true"), &gorm.Config{})
-	Db, err = gorm.Open(mysql.Open("root:123456@tcp(124.222.114.171:3306)/datashare?charset=utf8&parseTime=true"), &gorm.Config{})
-=======
+	//Db, err = gorm.Open(mysql.Open("root:123456@tcp(124.222.114.171:3306)/datashare?charset=utf8&parseTime=true"), &gorm.Config{})
 	Db, err = gorm.Open(mysql.Open("root:Lalala123#@tcp(localhost:3306)/datashare?charset=utf8&parseTime=true"), &gorm.Config{})
 	//Db, err = gorm.Open(mysql.Open("root:123456@tcp(124.222.114.171:3306)/datashare?charset=utf8&parseTime=true"), &gorm.Config{})
->>>>>>> 558c452 (20220809)
 	//Db, err = gorm.Open(mysql.Open(fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?charset=utf8&parseTime=true", Config.DB.User, Config.DB.Password, Config.DB.Host, Config.DB.Port, Config.DB.Name)), &gorm.Config{})
 
 	if err != nil {

@@ -58,7 +58,7 @@ func (user *User) CreateThread(topic string) (conv Thread, err error) {
 
 	Db.Create(&thread)
 
-	Db.Model(&Thread{}).Where("user_id = ?", user.Id).First(&conv)
+	Db.Model(&Thread{}).Where("user_id = ? and Topic = ?", user.Id, topic).First(&conv)
 
 	if conv.Uuid != thread.Uuid {
 		err = fmt.Errorf("create topic %s\n", topic)

@@ -1,18 +1,12 @@
 package main
 
 import (
-<<<<<<< HEAD
-	"e-book-Gin/data"
-	"github.com/gin-gonic/gin"
-	"io/ioutil"
-=======
 	"bytes"
 	"e-book-Gin/data"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"log"
->>>>>>> 558c452 (20220809)
 	"os"
 	"sync"
 	"time"
@@ -35,8 +29,6 @@ type FileInfo struct {
 	Name string
 }
 
-<<<<<<< HEAD
-=======
 type DictResponse struct {
 	Rc   int `json:"rc"`
 	Wiki struct {
@@ -76,13 +68,12 @@ type DictRequest struct {
 	UserID    string `json:"user_id"`
 }
 
->>>>>>> 558c452 (20220809)
 // TODO:5. 这里在内存里记录文件信息，有没有考虑中间文件更新、修改或者删除等，内存里的内容没同步更新呢？
 // ljs:好的 删除/更新文件的时候我仔细设计一下
 var fileInfos []FileInfo
 
 // TODO:7. 可以参考下 go 的 web 工程目录结构，都在一个文件里会随着代码复杂度上升，可读性会下降
-//ljs:把handlerFunc从匿名方法中抽出来可以吗?
+// ljs:把handlerFunc从匿名方法中抽出来可以吗?
 func main() {
 
 	r := gin.Default()
@@ -117,32 +108,31 @@ func main() {
 
 	r.POST("/signup_account", signupAccount)
 
-<<<<<<< HEAD
-=======
 	r.GET("/translatePage", translagePage)
 	r.POST("/translateResult", translateResult)
 	r.GET("/littleMouse", littleMouse)
 	r.GET("/datashare", datashare)
+	r.GET("/Vote", vote)
 	r.GET("/uploadPage", uploadPage)
->>>>>>> 558c452 (20220809)
 	err := r.Run(":7777")
 	if err != nil {
 		panic(err)
 	}
 }
 
-<<<<<<< HEAD
-=======
 func uploadPage(context *gin.Context) {
-	context.Redirect(http.StatusTemporaryRedirect, "http://118.178.236.128:8766/uploadPage")
+	context.Redirect(http.StatusTemporaryRedirect, "http://124.220.207.169:8766/uploadPage")
 }
 
 func datashare(context *gin.Context) {
-	context.Redirect(http.StatusTemporaryRedirect, "http://118.178.236.128:8081/")
+	context.Redirect(http.StatusTemporaryRedirect, "http://124.220.207.169:8081/")
+}
+func vote(context *gin.Context) {
+	context.Redirect(http.StatusTemporaryRedirect, "http://124.220.207.169:9999/Vote")
 }
 
 func littleMouse(context *gin.Context) {
-	context.Redirect(http.StatusTemporaryRedirect, "http://118.178.236.128:8000/index")
+	context.Redirect(http.StatusTemporaryRedirect, "http://124.220.207.169:8000/index")
 }
 
 func translateResult(context *gin.Context) {
@@ -207,7 +197,6 @@ func translagePage(context *gin.Context) {
 	context.HTML(http.StatusOK, "caiyunxiaoyi.html", nil)
 }
 
->>>>>>> 558c452 (20220809)
 func newThread(context *gin.Context) {
 	_, err := session(context)
 	if err != nil {
