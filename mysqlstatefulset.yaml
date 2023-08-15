@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-statefulset
+spec:
+  selector:
+    matchLabels:
+      app: mysql3311
+  serviceName: mysql
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: mysql3311
+    spec:
+      containers:
+        - name: mysql3311
+          image: mysql:latest
+          imagePullPolicy: IfNotPresent
+          args:
+            - "--character-set-server=utf8"
+            - "--collation-server=utf8_general_ci"
+          env:
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef: 
+                  name: mysql-config
+                  key: mysqlDBName
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: mysql-password
+          volumeMounts:
+          ports:
+            - containerPort: 3311
+              name: mysql

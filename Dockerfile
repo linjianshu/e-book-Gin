@@ -18,7 +18,7 @@ WORKDIR /build
 
 COPY . .
 
-EXPOSE 7777
+EXPOSE 6666
 
 RUN go build -ldflags="-s -w" -o /app/main
 
@@ -41,6 +41,6 @@ WORKDIR /app
 COPY  . /app/.
 COPY --from=builder /app/main /app/main
 
-EXPOSE 7777
+EXPOSE 6666
 
 CMD ["./main"]

@@ -114,7 +114,7 @@ func main() {
 	r.GET("/datashare", datashare)
 	r.GET("/Vote", vote)
 	r.GET("/uploadPage", uploadPage)
-	err := r.Run(":7777")
+	err := r.Run(":6666")
 	if err != nil {
 		panic(err)
 	}
